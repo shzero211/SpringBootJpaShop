@@ -47,4 +47,20 @@ private LocalDateTime orderDate;
 
 @Enumerated(EnumType.STRING)
 private OrderStatus status;
+
+//연관관계 편의 메소드
+public void setMember(Member member) {
+	this.member=member;
+	member.getOrders().add(this);
+}
+
+public void setOrderItem(OrderItem orderItem) {
+	orderItems.add(orderItem);
+	orderItem.setOrder(this);
+}
+
+public void setDelivery(Delivery delivery) {
+	this.setDelivery(delivery);
+	delivery.setOrder(this);
+}
 }
