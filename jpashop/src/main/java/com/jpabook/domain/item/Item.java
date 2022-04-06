@@ -21,6 +21,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter
+@Setter
 public abstract class Item {
 @Id
 @GeneratedValue
@@ -43,10 +44,10 @@ public void  addStock(int quantity) {
 }
 
 public void removeStock(int quantity) {
-	int restStock=this.stockQuantity-quantity;
+	int restStock=stockQuantity-quantity;
 	if(restStock<0) {
 		throw new NotEnoughStockException("need more stock");
 	}
-	this.stockQuantity=restStock;
+	stockQuantity=restStock;
 }
 }
